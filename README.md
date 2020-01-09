@@ -1,11 +1,11 @@
-# Django Rest Framework Template
+# Django Rest Framework User Template
 
 [![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Django_logo.svg/1200px-Django_logo.svg.png)](https://nodesource.com/products/nsolid)
 
 [![Language](https://img.shields.io/badge/Python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)](https://www.python.org/)
 
 
-Django Rest Framework Template, es un template de codigo abierto, para facilitar el desarrollo de programadores.
+Django Rest Framework User Template, es un template de codigo abierto, para facilitar el levantamiento de una api con Django, ademas de tener una implementacion de un modelo de usuarios personalizado.
 
   - Facil despliegue en enternos de desarrollo.
   - Un gran numero de herramientas a dispocision.
@@ -15,15 +15,15 @@ Django Rest Framework Template, es un template de codigo abierto, para facilitar
 
 Para que el entorno funcione correctamente es necesario:
 
-* [Docker] - El mejor contenedor!
-* [Docker Compose] - Simplifica el uso de Docker.
-* [Python] - Python 3.6 en adelante.
+* [Docker] - version 19+
+* [Docker Compose] - version 1.18+
+* [Python] - version 3.5+
 
 ### Installation
 
-Es necesario copiar el archivo .env.example como .env, modificar las variables de entorno a gusto del usuario. Despues simplemente construir las imagenes con docker-compose.
+Es necesario copiar el archivo .env.example como .env, modificar las variables de entorno a gusto del usuario. Luego construir las imagenes con docker-compose.
 ```sh
-$ cp .env.example
+$ cp .env.example .env
 $ docker-compose -f local.yml build
 $ docker-compose -f local.yml up -d
 ```

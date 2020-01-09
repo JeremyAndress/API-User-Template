@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  web:
+    env_file: .env
+    environment:
+      - EX_PORT_NGINX=$EX_PORT_NGINX
+      - PORT_NGINX=$PORT_NGINX
+    image: nginx:alpine
+    restart: always
+
+    ports:
+      - "$EX_PORT_NGINX:$PORT_NGINX"
+    volumes:
+      - ./src:/code
+      - ./log:/log
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+      - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - django
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
+  django:
+    env_file: .env
+    environment:
+      - EXPOSE_DJANGO_PORT=$EXPOSE_DJANGO_PORT
+      - DJANGO_DB_NAME=$DJANGO_DB_NAME
+      - DJANGO_DB_USER=$DJANGO_DB_USER
+      - DJANGO_DB_PASS=$DJANGO_DB_PASS
+      - DJANGO_DB_HOST=$DJANGO_DB_HOST
+      - DJANGO_DB_PORT=$DJANGO_DB_PORT
+    build: 
+      context: .
+      dockerfile: ./compose/local/django/Dockerfile
+    restart: always
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8011
+    expose:
+      - "$EXPOSE_DJANGO_PORT"
+    volumes:
+      - ./src/api:/home/app/web/api
+      - ./src/app:/home/app/web/app
+      - ./src/config:/home/app/web/config
+      - ./src/utils:/home/app/web/utils
+      - ./src/log:/log
+      - static_volume:/home/app/web/staticfiles
+      - media_volume:/home/app/web/mediafiles
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "10"
+networks:
+  default:
+    external:
+      name: gst
+
+volumes:
+  static_volume:
+  media_volume:
+
+      

@@ -1,6 +1,6 @@
 # API User Template
 
-[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Django_logo.svg/1200px-Django_logo.svg.png)](https://nodesource.com/products/nsolid)
+[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Django_logo.svg/650px-Django_logo.svg.png)]()
 
 [![Language](https://img.shields.io/badge/Python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)](https://www.python.org/)
 
@@ -34,4 +34,9 @@ Para un entorno de producción
 $ docker-compose -f production.yml build
 $ docker-compose -f production.yml up -d
 ```
+
+<p align="center"> 
+    <img src="https://octodex.github.com/images/nyantocat.gif" alt="octodex">
+ </p>
+
 

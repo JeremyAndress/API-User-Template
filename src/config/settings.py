@@ -20,7 +20,7 @@ DJANGO_APPS = [
 ]
 
 LOCAL_APPS = [
-    
+    'app.user'
 ]
 
 THIRD_PARTY_APPS=[
@@ -30,6 +30,8 @@ THIRD_PARTY_APPS=[
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+
+AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -61,13 +63,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'config.wsgi.application'
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

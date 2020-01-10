@@ -1,11 +1,11 @@
-# Django Rest Framework User Template
+# API User Template
 
 [![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Django_logo.svg/1200px-Django_logo.svg.png)](https://nodesource.com/products/nsolid)
 
 [![Language](https://img.shields.io/badge/Python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)](https://www.python.org/)
 
 
-Django Rest Framework User Template, es un template de codigo abierto, para facilitar el levantamiento de una api con Django, ademas de tener una implementacion de un modelo de usuarios personalizado.
+API User Template, es un template de codigo abierto, para facilitar el levantamiento de una api con Django, ademas de tener una implementacion de un modelo de usuarios personalizado.
 
   - Facil despliegue en enternos de desarrollo.
   - Un gran numero de herramientas a dispocision.

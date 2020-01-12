@@ -9,11 +9,5 @@ class UserController:
             *self.all_user
         )
         return user
-    # def getUser(self,pk):
-    #     user = User.objects.values(
-    #         *self.all_user
-    #     ).get(pk=pk)
-    #     return user
-
 
 userController = UserController()

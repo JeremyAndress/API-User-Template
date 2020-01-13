@@ -45,3 +45,10 @@ def getUser(request):
     elif request.method == 'DELETE':
         user.delete()
         return Response(status=HTTP_204_NO_CONTENT)
+
+    elif request.method == 'PUT':
+        serializer = UserSerializer(user, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)

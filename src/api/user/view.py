@@ -15,7 +15,7 @@ from .serializers import UserSerializer
 def user_api_root(request, format=None):
     return Response({
         'getUsers': reverse('user:getUsers', request=request, format=format),
-        'getUser': reverse('user:getUser', args=[1],request=request, format=format),
+        'getUser': reverse('user:getUser',request=request, format=format),
     })
 
 @api_view(['GET'])
@@ -31,7 +31,8 @@ def getUsers(request):
     return paginator.get_paginated_response(result_page)
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def getUser(request, pk):
+def getUser(request):
+    pk = request.query_params.get('pk', None)
     try:
         user = User.objects.get(pk=pk)
     except User.DoesNotExist:

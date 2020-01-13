@@ -10,6 +10,5 @@ app_name = 'user'
 urlpatterns = [
     url('user-api-root/',user_api_root,name='user_api_root'),
     url('getUsers/',getUsers,name='getUsers'),
-    # url(r'getUser/(?P<pk>\d+)/$',getUser,name='getUser'),
-    path('getUser/<int:pk>',getUser,name='getUser'),
+    url(r'getUser/(?P<pk>\d+)/$',getUser,name='getUser'),
 ]

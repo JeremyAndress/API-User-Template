@@ -15,7 +15,7 @@ from .serializers import UserSerializer
 def user_api_root(request, format=None):
     return Response({
         'getUsers': reverse('user:getUsers', request=request, format=format),
-        'getUser': reverse('user:getUser', request=request, format=format),
+        'getUser': reverse('user:getUser', args=[1],request=request, format=format),
     })
 
 @api_view(['GET'])

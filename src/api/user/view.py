@@ -52,3 +52,45 @@ def getUser(request):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+
+
+@csrf_exempt
+@api_view(['POST'])
+@permission_classes((AllowAny,))
+def signin(request):
+    logger.info('Signin')
+    try:
+        user = User.objects.get(username=request.data.get("username",""))
+    except User.DoesNotExist:
+        return Response({'Error': "Invalid username"}, status="400")
+    if not DEBUG:
+        url_ = os.getenv('AUTORIZACION_URL', 'http://10.181.24.239/assets/loginSap.asp')
+        params_ = {
+            'rut':request.data.get("username",""),
+            'clave':request.data.get("password","")
+            } 
+        logger.info('URL : {} Params : {}'.format(url_,params_))
+        exist = requests.get(url = url_, params = params_) 
+        logger.info('User {0} Exist {1}'.format(user,exist.content))
+        logger.info('Type {}'.format(type(exist.content)))
+        if exist.content == b'false':
+            return Response({'Error': "Invalid username or password"}, status="400")
+    
+    aut = UserAuthority.objects.filter(id_user=user).values('id_authority__nombre')
+    authorities = [ {'authority': i['id_authority__nombre'] } for i in aut  ]
+
+    token,data = Token.objects.get_or_create(user = user)
+   
+    is_expired, token = token_expire_handler(token)  
+  
+    nombre = user.first_name+' '+user.last_name+' '+user.last_name2
+    context = {
+        'username':user.username,
+        'nombre':nombre,
+        'expires_in': expires_in(token),
+        'token': token.key,
+        'date_expire': date_expire(token), 
+        'authorities': authorities,
+        'cencos': user.profile.cencos
+    }
+    return Response(context,status=HTTP_200_OK)

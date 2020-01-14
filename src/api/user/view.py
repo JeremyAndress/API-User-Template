@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny
 from rest_framework.status import (
     HTTP_400_BAD_REQUEST,
     HTTP_200_OK, HTTP_404_NOT_FOUND,
@@ -58,19 +59,25 @@ def getUser(request):
 @api_view(['POST'])
 # @permission_classes((AllowAny,))
 def signin(request):
+    from django.contrib.auth import authenticate
+    from utils.token import token_expire_handle, expires_in, date_expire
+    from rest_framework.authtoken.models import Token
 
     try:
-        user = User.objects.get(username=request.data.get("username",""))
-    except User.DoesNotExist:
+        username = request.data.get("username","")
+        password = request.data.get("password","")
+        user = authenticate(username=request.user, password=old_password)
+        print(user)
+        if user:
+            token,data = Token.objects.get_or_create(user = user)
+            is_expired, token = token_expire_handler(token)  
+            context = {
+                'username':user.username,
+                'expires_in': expires_in(token),
+                'token': token.key,
+                'date_expire': date_expire(token), 
+            }
+            return Response(context,status=HTTP_200_OK)
+    except Exception as e:
+        return Response(status=HTTP_400_BAD_REQUEST)
 
-    token,data = Token.objects.get_or_create(user = user)
-   
-    is_expired, token = token_expire_handler(token)  
-  
-    context = {
-        'username':user.username,
-        'expires_in': expires_in(token),
-        'token': token.key,
-        'date_expire': date_expire(token), 
-    }
-    return Response(context,status=HTTP_200_OK)

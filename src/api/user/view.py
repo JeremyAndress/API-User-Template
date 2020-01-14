@@ -60,14 +60,13 @@ def getUser(request):
 # @permission_classes((AllowAny,))
 def signin(request):
     from django.contrib.auth import authenticate
-    from utils.token import token_expire_handle, expires_in, date_expire
     from rest_framework.authtoken.models import Token
+    from utils.token import token_expire_handler, expires_in, date_expire
 
     try:
         username = request.data.get("username","")
         password = request.data.get("password","")
-        user = authenticate(username=request.user, password=old_password)
-        print(user)
+        user = authenticate(username=username, password=password)
         if user:
             token,data = Token.objects.get_or_create(user = user)
             is_expired, token = token_expire_handler(token)  

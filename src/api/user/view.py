@@ -63,7 +63,6 @@ def signin(request):
     from django.contrib.auth import authenticate
     from rest_framework.authtoken.models import Token
     from utils.token import token_expire_handler, expires_in, date_expire
-
     try:
         username = request.data.get("username","")
         password = request.data.get("password","")

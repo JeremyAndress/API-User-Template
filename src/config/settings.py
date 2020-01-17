@@ -24,13 +24,17 @@ LOCAL_APPS = [
     'app.core',
 ]
 
+TEST_APPS = [
+    'test.testUser',
+]
+
 THIRD_PARTY_APPS=[
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS + TEST_APPS
 
 AUTH_USER_MODEL = 'user.User'
 

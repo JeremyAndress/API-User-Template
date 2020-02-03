@@ -1,15 +1,15 @@
 from django.test import TestCase
-from app.user.models import User, Hash
+from app.user.models import User, UserHash
 from datetime import datetime
 
 class HashTestCase(TestCase):
     def setUp(self):
         user = User.objects.create(
-            username = 'Nani',
-            first_name = 'Na',
-            last_name = 'ni',
-            email = 'das@gmail.com',
-            age = 5
+            username = 'AlexFlinn',
+            first_name = 'Alex',
+            last_name = 'Flinn',
+            email = 'alexflinn@gmail.com',
+            age = 25
         )
         user.save()
 
@@ -18,8 +18,8 @@ class HashTestCase(TestCase):
             'date_end': datetime.now(),
             'hexa': 'fsfasd4sdf5ag2aef54'
         }
-        Hash.objects.create(**data)
+        UserHash.objects.create(**data)
 
-    def test_animals_can_speak(self):
-        lion = Hash.objects.get(hexa="fsfasd4sdf5ag2aef54")
-        print('here {}'.format(lion))
+    def compare_hash(self):
+        userhash = UserHash.objects.get(hexa="fsfasd4sdf5ag2aef54")
+        print('User : {}'.format(userhash))

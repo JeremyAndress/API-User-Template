@@ -10,7 +10,7 @@ class User(AbstractUser):
     def __str__(self):
         return "{}".format(self.username)
 
-class Hash(models.Model):
+class UserHash(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     hexa = models.CharField(max_length=250)

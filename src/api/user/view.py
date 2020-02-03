@@ -80,3 +80,26 @@ def signin(request):
     except Exception as e:
         return Response(status=HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+# @permission_classes((AllowAny,))
+def signup(request):
+    from django.contrib.auth import authenticate
+    from rest_framework.authtoken.models import Token
+    from utils.token import token_expire_handler, expires_in, date_expire
+    try:
+        username = request.data.get("username","")
+        password = request.data.get("password","")
+        user = authenticate(username=username, password=password)
+        if user:
+            token,data = Token.objects.get_or_create(user = user)
+            is_expired, token = token_expire_handler(token)  
+            context = {
+                'username':user.username,
+                'expires_in': expires_in(token),
+                'token': token.key,
+                'date_expire': date_expire(token), 
+            }
+            return Response(context,status=HTTP_200_OK)
+    except Exception as e:
+        return Response(status=HTTP_400_BAD_REQUEST)

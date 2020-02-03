@@ -17,7 +17,7 @@ class UserHash(models.Model):
     date_end = models.DateTimeField()
 
     class Meta:
-        db_table = 'hash'
+        db_table = 'user_hash'
 
 '''
 AbstractBaseUser:

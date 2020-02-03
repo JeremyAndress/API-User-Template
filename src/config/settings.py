@@ -6,7 +6,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = 'm08k!(3ct4s0t+aqw7xg7)fl5*pr)v5id5i3e0r(6k)hm(z$5l'
 
-DEBUG = bool(os.getenv('DEBUG','True'))
+DEBUG = eval(os.getenv('DEBUG','True'))
 
 ALLOWED_HOSTS = ['*']
 
@@ -120,4 +120,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "/mediafiles/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'misperrisduoc.duoc@gmail.com'
+EMAIL_HOST_PASSWORD = 'misperris6554'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 

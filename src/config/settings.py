@@ -25,7 +25,7 @@ LOCAL_APPS = [
 ]
 
 TEST_APPS = [
-    'test.testUser',
+    'test.usertest',
 ]
 
 THIRD_PARTY_APPS=[

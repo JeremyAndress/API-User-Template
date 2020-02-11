@@ -7,17 +7,34 @@
     <title>Document</title>
     {% load staticfiles %}
     <link href="{% static 'css/grid/flexboxgrid.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/cards/card.css' %}" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="row center-xs">
             <div class="col-xs-6">
-                    <h1>Here</h1>
+                <h1>Here</h1>
             </div>
         </div>
     </header>
     <body>
-        
+        <div class="row center-xs">
+            <div class="cards__item col-xs-6">
+            <div class="card">
+                    <div class="card__content">
+                    <div class="card__title">Flex</div>
+                    <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. </p>
+                    <button class="btn btn--block card__btn">Button</button>
+                    </div>
+            <div class="card__image card__image--fence"></div>
+            <div class="card__content">
+            <div class="card__title">Flex</div>
+            <p class="card__text">This is the shorthand for flex-grow, flex-shrink and flex-basis combined. The second and third parameters (flex-shrink and flex-basis) are optional. Default is 0 1 auto. </p>
+            <button class="btn btn--block card__btn">Button</button>
+            </div>
+            </div>
+            </div>
+        </div>
     </body>
     
 </body>

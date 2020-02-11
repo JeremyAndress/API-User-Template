@@ -24,9 +24,6 @@ LOCAL_APPS = [
     'app.core',
 ]
 
-TEST_APPS = [
-    'test.usertest',
-]
 
 THIRD_PARTY_APPS=[
     'rest_framework',
@@ -34,7 +31,7 @@ THIRD_PARTY_APPS=[
     'corsheaders',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS + TEST_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS 
 
 AUTH_USER_MODEL = 'user.User'
 

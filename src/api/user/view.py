@@ -96,6 +96,25 @@ def signup(request):
             context = 'Username already exist'
             return Response(context,status=HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
+            context = 'User Created'
+            return Response(context,status=HTTP_200_OK)
+    except Exception as e:
+        return Response(status=HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def signup_email(request):
+    try:
+        username = request.data.get("username",None)
+        email = request.data.get("email",None)
+        password = request.data.get("password",None)
+        if None in [username,email,password]:
+            context = 'You must write in all fields'
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+        try:
+            user = User.objects.get(username=username)
+            context = 'Username already exist'
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
             context = 'User Created, Check your email'
             return Response(context,status=HTTP_200_OK)
     except Exception as e:

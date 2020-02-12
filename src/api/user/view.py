@@ -18,6 +18,7 @@ def user_api_root(request, format=None):
         'signin': reverse('user:signin',request=request, format=format),
         'getUsers': reverse('user:getUsers', request=request, format=format),
         'getUser': reverse('user:getUser',request=request, format=format),
+        'signup' : reverse('user:signup',request=request, format=format),
     })
 
 @api_view(['GET'])
@@ -82,24 +83,20 @@ def signin(request):
 
 
 @api_view(['POST'])
-# @permission_classes((AllowAny,))
 def signup(request):
-    from django.contrib.auth import authenticate
-    from rest_framework.authtoken.models import Token
-    from utils.token import token_expire_handler, expires_in, date_expire
     try:
-        username = request.data.get("username","")
-        password = request.data.get("password","")
-        user = authenticate(username=username, password=password)
-        if user:
-            token,data = Token.objects.get_or_create(user = user)
-            is_expired, token = token_expire_handler(token)  
-            context = {
-                'username':user.username,
-                'expires_in': expires_in(token),
-                'token': token.key,
-                'date_expire': date_expire(token), 
-            }
+        username = request.data.get("username",None)
+        email = request.data.get("email",None)
+        password = request.data.get("password",None)
+        if None in [username,email,password]:
+            context = 'You must write in all fields'
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+        try:
+            user = User.objects.get(username=username)
+            context = 'Username already exist'
+            return Response(context,status=HTTP_400_BAD_REQUEST)
+        except User.DoesNotExist:
+            context = 'User Created, Check your email'
             return Response(context,status=HTTP_200_OK)
     except Exception as e:
         return Response(status=HTTP_400_BAD_REQUEST)

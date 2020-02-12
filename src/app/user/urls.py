@@ -3,7 +3,7 @@ from django.urls import path, include
 from django.conf.urls import url
 from api.user.view import (
     getUsers, getUser,
-    signin, user_api_root
+    signin, user_api_root, signup
 )
 from api.user.root import user_api_root_detail
 
@@ -15,4 +15,5 @@ urlpatterns = [
     url('getUsers/',getUsers,name='getUsers'),
     url('getUser',getUser,name='getUser'),
     url('signin',signin,name='signin'),
+    url('signup',signup,name='signup'),
 ]

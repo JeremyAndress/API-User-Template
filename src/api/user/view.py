@@ -96,6 +96,9 @@ def signup(request):
             context = 'Username already exist'
             return Response(context,status=HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
+            create = {'username':username,'email':email,'password':password}
+            user = User.objects.create_user(**create)
+            user.save()
             context = 'User Created'
             return Response(context,status=HTTP_200_OK)
     except Exception as e:
@@ -103,6 +106,7 @@ def signup(request):
 
 @api_view(['POST'])
 def signup_email(request):
+    from utils.emailback import send_email 
     try:
         username = request.data.get("username",None)
         email = request.data.get("email",None)
@@ -115,6 +119,9 @@ def signup_email(request):
             context = 'Username already exist'
             return Response(context,status=HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
+            create = {'username':username,'email':email,'password':password,'is_active':False}
+            user = User.objects.create_user(**create)
+            user.save()
             context = 'User Created, Check your email'
             return Response(context,status=HTTP_200_OK)
     except Exception as e:

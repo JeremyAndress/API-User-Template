@@ -1,7 +1,7 @@
 # API Dj Template
 
 <p align="center"> 
-    <img src="https://images.computerwoche.de/bdb/2685258/738x415_f5f5f5.jpg" alt="octodex">
+    <img src=".src/static/img/python.jpg" alt="octodex">
  </p>
 
 
@@ -41,6 +41,8 @@ $ docker-compose -f local.yml build
 $ docker-compose -f local.yml up
 ```
 - Para ambientes productivos debes hacer la misma rutina anterior, pero levantar los servicios con el archivo production.yml en vez de local.yml.
+
+## Good luck for you !!!
 
 <p align="center"> 
     <img src="https://octodex.github.com/images/nyantocat.gif" alt="octodex">

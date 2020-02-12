@@ -4,10 +4,10 @@ from django.template import Context
 from django.template.loader import get_template
 from django.template.loader import render_to_string
 
-def send_email():
-    subject, from_email = 'Prueba css', 'misperrisduoc.duoc@gmail.com'
-    to = ['jrojas@qin.cl', 'jeremysilvasilva@gmail.com']
-    preview = {'msj':'Localhost : message'}
+def send_email(subject,to,preview):
+    subject, from_email = subject, 'misperrisduoc.duoc@gmail.com'
+    to = to
+    preview = {'msj':preview}
     header = {'msj': 'Gracias Por Registrarte','msj2':'Para activar su cuenta acceda al siguiente link'}
     lorem = '''Lorem ipsum dolor sit amet, 
     consectetur adipiscing elit, sed do eiusmod 
@@ -22,7 +22,7 @@ def send_email():
     ctx = {'preview':preview,'header':header,'body':body}
     template = get_template('email/activate-email.html').render(ctx)
     print(template)
-    msg = EmailMultiAlternatives(subject, template, from_email, to)
+    msg = EmailMultiAlternatives(subject, template, from_email, [to])
     msg.attach_alternative(template, "text/html")
     msg.send()
 

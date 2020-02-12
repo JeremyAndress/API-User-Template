@@ -105,7 +105,7 @@ def signup(request):
         return Response(status=HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
-def signup_email(request):
+def email_signup(request):
     from utils.emailback import send_email 
     try:
         username = request.data.get("username",None)
@@ -122,6 +122,8 @@ def signup_email(request):
             create = {'username':username,'email':email,'password':password,'is_active':False}
             user = User.objects.create_user(**create)
             user.save()
+            print('here')
+            send_email(f'Activa Tu Cuenta {username}',email,'Localhost Activate',)
             context = 'User Created, Check your email'
             return Response(context,status=HTTP_200_OK)
     except Exception as e:

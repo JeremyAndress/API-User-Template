@@ -1,7 +1,7 @@
 # API Dj Template
 
 <p align="center"> 
-    <img src=".src/static/img/python.jpg" alt="octodex">
+    <img src="src/static/img/python.jpg" alt="octodex">
  </p>
 
 

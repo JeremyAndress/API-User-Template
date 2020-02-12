@@ -21,7 +21,6 @@ def send_email(subject,to,preview):
     body =  {'msj':lorem}
     ctx = {'preview':preview,'header':header,'body':body}
     template = get_template('email/activate-email.html').render(ctx)
-    print(template)
     msg = EmailMultiAlternatives(subject, template, from_email, [to])
     msg.attach_alternative(template, "text/html")
     msg.send()

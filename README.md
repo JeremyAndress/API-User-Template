@@ -42,7 +42,9 @@ $ docker-compose -f local.yml up
 ```
 - Para ambientes productivos debes hacer la misma rutina anterior, pero levantar los servicios con el archivo production.yml en vez de local.yml.
 
+<p align="center"> 
 ## Good luck for you !!!
+</p>
 
 <p align="center"> 
     <img src="https://octodex.github.com/images/nyantocat.gif" alt="octodex">

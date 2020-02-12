@@ -1,42 +1,48 @@
-# API User Template
+# API Dj Template
 
-[![N|Solid](https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Django_logo.svg/650px-Django_logo.svg.png)]()
+<p align="center"> 
+    <img src="https://images.computerwoche.de/bdb/2685258/738x415_f5f5f5.jpg" alt="octodex">
+ </p>
+
 
 [![Language](https://img.shields.io/badge/Python-3.5%20%7C%203.6%20%7C%203.7-blue.svg)](https://www.python.org/)
 
 
-API User Template, es un template de codigo abierto, para facilitar el levantamiento de una api con Django, ademas de tener una implementacion de un modelo de usuarios personalizado.
-
-  - Facil despliegue en enternos de desarrollo.
-  - Un gran numero de herramientas a dispocision.
-  - Paso a produccion rapido y sin problemas.
+Este repositorio cuenta con una implemtacion de django rest framework para el levantamiento de una api, de manera rapida y eficaz. 
 
 ### Dependencias
 
-Para que el entorno funcione correctamente es necesario:
+Para hacer funcionar este template es necesario tener las siguientes herramientas instaladas en su maquina. Este template fue generado en un pc Linux, pero gracias al uso de Docker, su funcionamiento debe ser el mismo en maquinas Windows o Mac.
 
 * [Docker] - version 19+
 * [Docker Compose] - version 1.18+
 * [Python] - version 3.5+
 
-### Installation
+Si deseas conectar la aplicacion con una base de datos mysql sera necesario tener instalado algunos paquetes para el correcto funcionamiento con versiones python 3 en adelante, para instalarlas es necesario el siguiente comando :
+```sh
+$ sudo apt-get install python3-dev libmysqlclient-dev
+```
 
-Es necesario copiar el archivo .env.example como .env, modificar las variables de entorno a gusto del usuario. Luego construir las imagenes con docker-compose.
+### Como usar
+
+- Primero debes clonar el repositorio, una vez en tu maquina situarte en la raiz de este.
+- La primera modificacion que debes hacer es copiar el archivo .env.example donde se encuentran las variables de entorno, como .env para que puedan ser accesibles por docker.
 ```sh
 $ cp .env.example .env
-$ docker-compose -f local.yml build
-$ docker-compose -f local.yml up -d
 ```
 
-Para un entorno de producción
+- Luego contruir las imagenes de docker con docker compose, para esto utilizaremos el siguiente comando .
 
 ```sh
-$ docker-compose -f production.yml build
-$ docker-compose -f production.yml up -d
+$ docker-compose -f local.yml build
 ```
+- Finalmente levantar los servicios, una vez lanzado el comando podras revisar en el puerto 8034 de tu local el sistema funcionando 
+```sh
+$ docker-compose -f local.yml up
+```
+- Para ambientes productivos debes hacer la misma rutina anterior, pero levantar los servicios con el archivo production.yml en vez de local.yml.
 
 <p align="center"> 
     <img src="https://octodex.github.com/images/nyantocat.gif" alt="octodex">
  </p>
-
 

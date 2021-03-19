@@ -1,7 +1,7 @@
 Django==2.2.8
 django-cors-headers==3.1.0
 django-mysql==3.2.0
-djangorestframework==3.10.2
+djangorestframework==3.11.2
 et-xmlfile==1.0.1
 jdcal==1.4.1
 memory-profiler==0.55.0
